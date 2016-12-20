@@ -2,13 +2,10 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
-import YoutubeApi from './youtube_api';
+import { youtubeApiKey } from './youtube_api';
 import VideoList from './components/video_list'
 import VideoDetail from './components/video_detail'
 import YTSearch from 'youtube-api-search';
-
-let youtubeApi = new YoutubeApi();
-const apiKey = youtubeApi.key;
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +20,7 @@ class App extends Component {
   }
 
   _videoSearch(term) {
-    YTSearch({ key: apiKey, term: term }, (videos) => {
+    YTSearch({ key: youtubeApiKey, term: term }, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
